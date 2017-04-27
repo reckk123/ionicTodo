@@ -6066,6 +6066,9 @@ progress {
       background: none;
       box-shadow: none;
       color: #444; }
+.button.button-positive.button-clear:hover {
+    color: #8c8a8a;    
+}
     .button.button-positive.button-icon {
       border-color: transparent;
       background: none; }
