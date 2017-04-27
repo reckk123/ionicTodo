@@ -10,8 +10,7 @@ angular.module('todo.controllers', [])
   }, {
     scope: $scope,
     animation: 'slide-in-up'  
-  });
-  
+  });  
     
   // Edit and load the Modal for edit task
   $ionicModal.fromTemplateUrl('templates/edit-task.html', function(modal) {
@@ -20,6 +19,7 @@ angular.module('todo.controllers', [])
     scope: $scope,
     animation: 'slide-in-up'
   });
+    
   // Edit and load the Modal for edit project
   $ionicModal.fromTemplateUrl('templates/edit-project.html', function(modal) {
     $scope.editProjectModal = modal;
@@ -37,7 +37,6 @@ angular.module('todo.controllers', [])
   $scope.predicate = 'createDate';
 
   $scope.reverse = true;
-
   
   // A utility function for creating a new project
   // with the given projectTitle
@@ -84,8 +83,8 @@ angular.module('todo.controllers', [])
     }
     $scope.projects[i] = project;
     $scope.editProjectModal.hide();
-
-    // Inefficient, but save all the projects
+      
+// Inefficient, but save all the projects
     Projects.save($scope.projects);
 
   };
@@ -103,8 +102,7 @@ angular.module('todo.controllers', [])
     });
     $scope.taskModal.hide();
 
-    // Inefficient, but save all the projects
- //   $scope.orderProjectTasks($scope.activeProject);
+    // Inefficient, but save all the projects 
     Projects.save($scope.projects);
     task.title = "";
   };
@@ -119,9 +117,7 @@ angular.module('todo.controllers', [])
     $scope.editTaskModal.hide();
 
     // Inefficient, but save all the projects
-//    $scope.orderProjectTasks($scope.activeProject);
     Projects.save($scope.projects);
-
   };
 
 // return index of the task with given id
@@ -145,8 +141,7 @@ angular.module('todo.controllers', [])
   };
 
   // Make sure to persist the change after is done is toggled
-  $scope.doneClicked = function(task) {
-    //alert("toggle done task "+task.isDone)
+  $scope.doneClicked = function(task) {    
     if (!$scope.activeProject || !task) {
       return;
     }
@@ -205,19 +200,17 @@ angular.module('todo.controllers', [])
   $scope.deleteProject = function(i, project) {
     if (!$scope.activeProject || !project ) {
       return;
-    }
-    console.log("start deleting");
+    }    
     $scope.showConfirm('Delete Project', 'Are you sure you want to delete this project?',function() {
       $scope.projects.splice(i,1);
       Projects.save($scope.projects);
     });
   } 
 
-
   $timeout(function() {
     if($scope.projects.length == 0) {
       while(true) {
-        var projectTitle = prompt('Your first project title:');
+        var projectTitle = prompt('Please enter the Project title:');
         if(projectTitle) {
           createProject(projectTitle);
           break;
